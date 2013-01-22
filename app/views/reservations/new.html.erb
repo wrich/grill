@@ -1,0 +1,9 @@
+<h1>Come on in!</h1>
+
+<% if current_user %>
+  <%= render 'form' %>
+<% else %>
+  <h2>Sign up for an account.</h2>
+  <p>Earn points and make reservations online by <%= link_to "signing up for your very own account!", new_user_url %></p>
+    
+<% end %>

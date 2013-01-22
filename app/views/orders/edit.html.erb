@@ -1,0 +1,31 @@
+<h1>Order #<%= @order.id %></h1>
+
+
+<h2>Here's Your Order</h2>
+
+<table>
+  <thead>
+    <th>Qty</th>
+    <th>Item</th>
+    <th>Amount</th>
+  </thead>
+  <tbody>
+    <% total = 0 %>
+    <% @order.order_items.each do |order_item| %>
+      <tr>
+        <td><%= order_item.qty %></td>
+        <td><%= order_item.item.name %></td>
+        <td>$<%= order_item.qty * order_item.item.price %></td>
+      </tr>
+      <% subtotal = order_item.qty * order_item.item.price %>
+      <% total += subtotal %>
+    <% end %>
+    <tr class="total">
+      <td>TOTAL</td>
+      <td></td>
+      <td>$<%= total  %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="checkout"><%= link_to "Checkout Now", order_url(@order), method: 'put' %> or <%= link_to "Keep Shopping", menu_url %></p>
